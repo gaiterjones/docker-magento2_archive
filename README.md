@@ -1,4 +1,4 @@
-# Docker Magento 2 CE
+# Docker Magento 2.1.7 CE
 
 Docker containers for Magento 2.x development including :
 

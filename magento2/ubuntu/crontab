@@ -1,0 +1,2 @@
+*/1 * * * * www-data /usr/local/bin/php /var/www/dev/magento2/bin/magento cron:run
+*/1 * * * * www-data /usr/local/bin/php /var/www/dev/magento2/bin/magento indexer:reindex

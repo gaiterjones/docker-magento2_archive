@@ -8,7 +8,7 @@ backend apache_1 {
     .host = "magento2_php-apache_1";
     .port = "80";
 	.probe = {
-	    .request =  "GET /healthcheck.txt HTTP/1.1"
+	    .request =  "GET /healthcheck.php HTTP/1.1"
 	                "Host: magento2.dev.com"
 	                "Connection: close"
 	                "Accept: text/html" ;

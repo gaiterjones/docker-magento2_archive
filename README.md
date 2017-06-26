@@ -1,2 +1,19 @@
-# docker-magento2
-Docker containers for Magento 2.x development including Session, System, FPC REDIS, VARNISH and Dynamic Mono Host Scaling
+# Docker Magento 2 CE
+
+Docker containers for Magento 2.x development including :
+
+  - PHP 7.0.6
+  - Apache 2.4
+  - MYSQL 5.7
+  - PhpMyAdmin
+  - REDIS Session, System, FPC
+  - Varnish FPC
+  - Scaleable php-apache service
+
+See http://blog.gaiterjones.com/docker-magento-2-development-deployment-php7-apache2-4-redis-varnish-scaleable/ for deployment instructions.
+
+
+ 
+
+
+

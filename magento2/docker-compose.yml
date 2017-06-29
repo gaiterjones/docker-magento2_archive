@@ -11,10 +11,10 @@ services:
         hostname: manager
         domainname: "${APPDOMAIN}"
         volumes:
-            #- "${CONTAINERDATA}/${PROJECT_NAME}/dev1:/var/www/dev"
             - "${CONTAINERDATA}/${PROJECT_NAME}/data:/home/data"
             - "${MANAGERDEV}:/home/dev"
             - /var/run/docker.sock:/var/run/docker.sock
+            - ./varnish/varnish.secret:/etc/varnish/secret            
         networks:
             - wwwserver
         environment:
@@ -98,7 +98,7 @@ services:
             - "${CONTAINERDATA}/${PROJECT_NAME}/data:/home/data"
         networks:
             - database
-        restart: always            
+        restart: always
         environment:
             MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
             MYSQL_DATABASE: "${MYSQL_DATABASE}"

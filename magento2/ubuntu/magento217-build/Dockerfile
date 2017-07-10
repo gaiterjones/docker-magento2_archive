@@ -15,11 +15,29 @@ RUN requirements="libpng12-dev libmcrypt-dev libmcrypt4 libcurl3-dev libfreetype
     && docker-php-ext-install intl \
     && docker-php-ext-install xsl \
     && docker-php-ext-install soap \
-    && docker-php-ext-install opcache \	
+    && docker-php-ext-install opcache \
     && requirementsToRemove="libpng12-dev libmcrypt-dev libcurl3-dev libpng12-dev libfreetype6-dev libjpeg-turbo8-dev" \
     && apt-get purge --auto-remove -y $requirementsToRemove
 
+# Install XDEBUG extension
+# Xdebug replaces PHP's var_dump() function for displaying variables.
+# https://xdebug.org/download.php
+# confirm => php -m | grep -i xdebug
+RUN set -x \
+    && cd /tmp \
+    && curl -sSL -o xdebug-2.5.5.tgz http://xdebug.org/files/xdebug-2.5.5.tgz \
+    && tar -xf xdebug-2.5.5.tgz \
+    && cd xdebug-2.5.5 \
+    && /usr/local/bin/phpize \
+    && ./configure \
+    && make \
+    && make install \
+    && echo "zend_extension=xdebug.so" > /usr/local/etc/php/conf.d/ext-xdebug.ini \
+    && rm -rf /tmp/xdebug-2.5.5.tgz xdebug-2.5.5.tgz
+
+
 # Install memcache extension
+#
 RUN set -x \
     && apt-get update && apt-get install -y --no-install-recommends unzip libssl-dev libpcre3 libpcre3-dev \
     && cd /tmp \
@@ -32,7 +50,7 @@ RUN set -x \
     && make install \
     && echo "extension=memcache.so" > /usr/local/etc/php/conf.d/ext-memcache.ini \
     && rm -rf /tmp/pecl-memcache-php7 php7.zip
-	
+
 # get magento 2 and extract
 #
 RUN mkdir /var/www/dev && mkdir /var/www/dev/magento2 && rm -rf /var/www/html/*
@@ -55,7 +73,7 @@ RUN set -x \
 #
 COPY ./healthcheck.php /var/www/dev/magento2/
 COPY ./auth.json /var/www/.composer/
-RUN set -x \	
+RUN set -x \
 	&& usermod -u 1000 www-data \
 	&& chsh -s /bin/bash www-data
 
@@ -95,5 +113,5 @@ ENV APACHE_LOCK_DIR /var/lock/apache2
 # cleanup
 #
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-	
+
 WORKDIR /var/www/dev/magento2

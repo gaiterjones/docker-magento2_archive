@@ -1,4 +1,4 @@
-FROM gaiterjones/magento2:2.1.7
+FROM gaiterjones/magento2:2.1.8
 LABEL maintainer "paj@gaiterjones.com"
 LABEL description "Magento 2 PHP-APACHE Service"
 # ------------------------------------------------------------------
@@ -21,7 +21,7 @@ RUN set -x \
 	&& sed -i "s/XUSERNAMEX/$MAGENTO_REPO_USERNAME/g" /var/www/.composer/auth.json \
 	&& sed -i "s/XPASSWORDX/$MAGENTO_REPO_PASSWORD/g" /var/www/.composer/auth.json \
 	&& cat /var/www/.composer/auth.json
-	
+
 # msmtprc smtp config
 #
 ARG APPDOMAIN
@@ -39,7 +39,7 @@ RUN a2enmod rewrite \
 	&& a2enmod remoteip \
 	&& a2enconf remoteip \
 	&& a2ensite 000-default.conf
-	
+
 WORKDIR /var/www/dev/magento2
 
 # cron job

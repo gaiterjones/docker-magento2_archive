@@ -1,6 +1,6 @@
-# Docker Magento 2.1.7 CE
+# Docker Magento 2.1.9 Open Source (CE)
 
-Docker containers for Magento 2.x development including :
+Docker containers for Magento 2.1.x development including :
 
   - PHP 7.0.6
   - Apache 2.4

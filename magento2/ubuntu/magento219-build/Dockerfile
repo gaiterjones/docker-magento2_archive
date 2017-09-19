@@ -1,7 +1,10 @@
-FROM gaiterjones/phusion0922-apache2-php706:latest
+FROM gaiterjones/phusion0922-apache2-php722:latest
 LABEL maintainer "paj@gaiterjones.com"
 LABEL description "Magento 2 PHP-APACHE Service"
-ENV MAGENTO_VERSION 2.1.8
+
+ENV MAGENTO_VERSION 2.1.9
+# sha256sum Magento-CE-2.x.x.tar.gz
+ENV MAGENTO_SHA256 ec845761e816d3e23df34c51d0209e987fd9847a6267ab79aa485b37257b3c2f
 
 # dependencies
 RUN requirements="libpng12-dev libmcrypt-dev libmcrypt4 libcurl3-dev libfreetype6 libjpeg-turbo8 libjpeg-turbo8-dev libpng12-dev libfreetype6-dev libicu-dev libxslt1-dev msmtp nano git" \
@@ -60,6 +63,7 @@ RUN set -x \
 	&& mkdir /tmp/magento2 \
 	&& cd /tmp/magento2 \
 	&& curl https://pe.terjon.es/dropbox/Magento-CE-$MAGENTO_VERSION.tar.gz -o $MAGENTO_VERSION.tar.gz \
+	&& echo "$MAGENTO_SHA256 $MAGENTO_VERSION.tar.gz" | sha256sum -c - \
 	&& tar xvf $MAGENTO_VERSION.tar.gz \
 	&& cd .. \
 	&& mv magento2/* magento2/.htaccess /var/www/dev/magento2

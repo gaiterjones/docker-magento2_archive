@@ -53,8 +53,16 @@ RUN set -x \
 
 # get magento 2 and extract
 #
-RUN mkdir /var/www/dev && mkdir /var/www/dev/magento2 && rm -rf /var/www/html/*
-RUN mkdir /tmp/magento2 && cd /tmp/magento2 && curl https://pe.terjon.es/dropbox/Magento-CE-$MAGENTO_VERSION -o $MAGENTO_VERSION.tar.gz && tar xvf $MAGENTO_VERSION.tar.gz && cd .. && mv magento2/* magento2/.htaccess /var/www/dev/magento2
+RUN set -x \
+	&& mkdir /var/www/dev \
+	&& mkdir /var/www/dev/magento2 \
+	&& rm -rf /var/www/html/* \
+	&& mkdir /tmp/magento2 \
+	&& cd /tmp/magento2 \
+	&& curl https://pe.terjon.es/dropbox/Magento-CE-$MAGENTO_VERSION.tar.gz -o $MAGENTO_VERSION.tar.gz \
+	&& tar xvf $MAGENTO_VERSION.tar.gz \
+	&& cd .. \
+	&& mv magento2/* magento2/.htaccess /var/www/dev/magento2
 
 # install composer
 #

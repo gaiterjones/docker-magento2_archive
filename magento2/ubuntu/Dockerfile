@@ -1,7 +1,10 @@
-FROM gaiterjones/magento2:2.1.8
+FROM gaiterjones/magento2:2.1.9
 LABEL maintainer "paj@gaiterjones.com"
 LABEL description "Magento 2 PHP-APACHE Service"
 # ------------------------------------------------------------------
+# FROM gaiterjones/magento2:2.1.9 PHP 7.0.22
+# OR
+# FROM gaiterjones/magento2:2.1.8 PHP 7.0.06
 # FROM gaiterjones/magento2:2.1.7
 
 # configs

@@ -4,7 +4,7 @@ LABEL description "Magento 2 PHP-APACHE Service"
 
 ENV MAGENTO_VERSION 2.1.12
 # sha256sum Magento-CE-2.x.x.tar.gz
-ENV MAGENTO_SHA256 0d62c56928e2ffdd968750a1e80c1de6213772ca1c87ebebd8e0461ad4d46cbd
+ENV MAGENTO_SHA256 fca3b3f72d47a7e3b04e8b159a8ef0d2bcb3bf69577b4d2a07545df459699048
 
 # dependencies
 RUN requirements="libpng12-dev libmcrypt-dev libmcrypt4 libcurl3-dev libfreetype6 libjpeg-turbo8 libjpeg-turbo8-dev libpng12-dev libfreetype6-dev libicu-dev libxslt1-dev msmtp nano git" \
